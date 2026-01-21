@@ -13,14 +13,14 @@ namespace PolpAbp.ResourceManagement.Services
     public abstract class ResourceLogContributor : IResourceLogContributor
     {
         public IAbpLazyServiceProvider LazyServiceProvider { get; set; }
-        
+
         public abstract string ResourceName { get; }
 
         protected readonly IRepository<ResourceUsageLog, Guid> UsageLogRepository;
         protected readonly IRepository<ResourceMonthlyUsage, Guid> MonthlyUsageRepository;
         protected readonly IRepository<ResourceYearlyUsage, Guid> YearlyUsageRepository;
 
-        protected IRepository<Resource, Guid> ResourceRepository => LazyServiceProvider.LazyGetRequiredService<IRepository<Resource, Guid>> ();
+        protected IRepository<Resource, Guid> ResourceRepository => LazyServiceProvider.LazyGetRequiredService<IRepository<Resource, Guid>>();
         protected IGuidGenerator GuidGenerator => LazyServiceProvider.LazyGetRequiredService<IGuidGenerator>();
 
 

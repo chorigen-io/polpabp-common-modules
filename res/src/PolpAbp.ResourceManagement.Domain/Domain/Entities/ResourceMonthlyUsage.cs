@@ -12,12 +12,12 @@ namespace PolpAbp.ResourceManagement.Domain.Entities
         public int Year { get; set; }
         public int Month { get; set; }
         public long Usage { get; set; }
-        
+
         // Resource navigation
         public virtual Resource Resource { get; set; }
 
         protected ResourceMonthlyUsage() : base() { }
 
-        public ResourceMonthlyUsage(Guid id) : base(id) { } 
+        public ResourceMonthlyUsage(Guid id) : base(id) { }
     }
 }

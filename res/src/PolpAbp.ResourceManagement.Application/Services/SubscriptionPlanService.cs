@@ -9,7 +9,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
-using Volo.Abp.ObjectMapping;
 
 namespace PolpAbp.ResourceManagement.Services
 {
@@ -20,7 +19,7 @@ namespace PolpAbp.ResourceManagement.Services
         private readonly IRepository<Resource, Guid> _resourceRepository;
         private readonly ResourceMgmtOptions _options;
 
-        public SubscriptionPlanService(IRepository<TenantSubscription, Guid> subscriptionRepository, 
+        public SubscriptionPlanService(IRepository<TenantSubscription, Guid> subscriptionRepository,
             IRepository<Resource, Guid> resourceRepository,
             IOptions<ResourceMgmtOptions> options)
         {
@@ -38,7 +37,7 @@ namespace PolpAbp.ResourceManagement.Services
                 .Where(a => a.EffectiveOn < referenceTime && (!a.TerminatedOn.HasValue || a.TerminatedOn.Value > referenceTime))
                 .ToList();
 
-            var ret =  entries.Select(elem =>
+            var ret = entries.Select(elem =>
             {
                 var y = ObjectMapper.Map<TenantSubscription, SubscriptionPlanOutputDto>(elem);
                 // Plan detail
@@ -116,7 +115,7 @@ namespace PolpAbp.ResourceManagement.Services
             var entries = await _subscriptionRepository.GetListAsync();
 
             // Create new subscriptions 
-            foreach(var newPlan in input)
+            foreach (var newPlan in input)
             {
                 var newSub = ObjectMapper.Map<SubscriptionPlanInputDto, TenantSubscription>(newPlan);
                 await _subscriptionRepository.InsertAsync(newSub, cancellationToken: cancellationToken);
@@ -139,7 +138,7 @@ namespace PolpAbp.ResourceManagement.Services
                 .Where(a => a.EffectiveOn < now && (!a.TerminatedOn.HasValue || a.TerminatedOn.Value > now) && a.Plan.Breakdowns.Any(b => b.ResourceId == resourceEntry.Id))
                 .ToList();
 
-            if (entries.Count > 0 )
+            if (entries.Count > 0)
             {
                 if (isTenantLevel)
                 {
@@ -249,7 +248,7 @@ namespace PolpAbp.ResourceManagement.Services
                 .Where(a => a.EffectiveOn < now && (!a.TerminatedOn.HasValue || a.TerminatedOn.Value > now) && a.Plan.Breakdowns.Any(b => b.ResourceId == resourceEntry.Id))
                 .FirstOrDefault();
 
-            if (entry != null )
+            if (entry != null)
             {
                 return ComputeBillingDateRange(entry.BillingCycleOn, entry.Plan.BillingCycle, now);
             }
@@ -282,15 +281,15 @@ namespace PolpAbp.ResourceManagement.Services
                 }
 
                 rangeStart = rangeEnd!.Value;
-                maxLoop ++;
+                maxLoop++;
             }
 
             throw new Exception("Wrong cycle");
         }
-        
+
 
         private DateTime? GetRangeEndDate(BillingCycleEnum cycle, DateTime startDate)
-        {            
+        {
             switch (cycle)
             {
                 case BillingCycleEnum.Day:

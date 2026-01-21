@@ -13,7 +13,8 @@ namespace PolpAbp.ResourceManagement.Core
 
         public List<ResourceUsageLimit> FreeUsageLimit { get; set; }
 
-        public ResourceMgmtOptions() {
+        public ResourceMgmtOptions()
+        {
             IsEnabled = true;
             Contributors = new Dictionary<string, Type>();
             FreeUsageLimit = new List<ResourceUsageLimit>();

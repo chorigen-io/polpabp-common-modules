@@ -18,8 +18,8 @@ public static class ResourceManagementDbContextModelCreatingExtensions
         builder.Entity<Resource>(b =>
         {
             //Configure table & schema name
-            b.ToTable(ResourceManagementDbProperties.DbTablePrefix 
-                + ResourceManagementDbProperties.TableNames.Resource, 
+            b.ToTable(ResourceManagementDbProperties.DbTablePrefix
+                + ResourceManagementDbProperties.TableNames.Resource,
                 ResourceManagementDbProperties.DbSchema);
             b.ConfigureByConvention();
             //Properties
@@ -106,7 +106,7 @@ public static class ResourceManagementDbContextModelCreatingExtensions
 
             b.Property(q => q.Family)
             .IsRequired()
-            .HasMaxLength(ResourceManagementDomainConsts.MaxPlanFamilyLength); 
+            .HasMaxLength(ResourceManagementDomainConsts.MaxPlanFamilyLength);
 
             b.Property(q => q.Description)
             .HasMaxLength(ResourceManagementDomainConsts.MaxPlanDescLength);

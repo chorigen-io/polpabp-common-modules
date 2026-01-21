@@ -24,7 +24,7 @@ namespace PolpAbp.ResourceManagement.Domain.Entities
             CategoryQuotas = new List<PlanCategoryQuota>();
         }
 
-        public Plan(Guid id) : base(id) 
+        public Plan(Guid id) : base(id)
         {
             Breakdowns = new List<PlanBreakdown>();
             CategoryQuotas = new List<PlanCategoryQuota>();

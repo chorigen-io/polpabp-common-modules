@@ -13,13 +13,13 @@ namespace PolpAbp.ResourceManagement.Domain.Entities
         public string Destination { get; set; }
         public bool IsExempt { get; set; }
         public string ExemptionReason { get; set; }
-        public int Usage { get;set; }
+        public int Usage { get; set; }
 
         // Resource navigation
         public virtual Resource Resource { get; set; }
 
         protected ResourceUsageLog() : base() { }
 
-        public ResourceUsageLog(Guid id): base(id) { }  
+        public ResourceUsageLog(Guid id) : base(id) { }
     }
 }

@@ -1,5 +1,4 @@
-﻿using PolpAbp.ResourceManagement.Core;
-using System;
+﻿using System;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 
@@ -28,6 +27,6 @@ namespace PolpAbp.ResourceManagement.Domain.Entities
 
         protected TenantSubscription() : base() { }
 
-        public TenantSubscription(Guid id) : base(id) { }   
+        public TenantSubscription(Guid id) : base(id) { }
     }
 }

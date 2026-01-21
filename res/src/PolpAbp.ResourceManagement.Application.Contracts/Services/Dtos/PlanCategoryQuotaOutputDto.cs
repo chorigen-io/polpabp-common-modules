@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PolpAbp.ResourceManagement.Services.Dtos
+﻿namespace PolpAbp.ResourceManagement.Services.Dtos
 {
     public class PlanCategoryQuotaOutputDto
     {

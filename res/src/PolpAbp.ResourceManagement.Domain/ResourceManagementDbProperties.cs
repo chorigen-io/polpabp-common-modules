@@ -1,6 +1,4 @@
-﻿using Volo.Abp.Data;
-
-namespace PolpAbp.ResourceManagement;
+﻿namespace PolpAbp.ResourceManagement;
 
 public static class ResourceManagementDbProperties
 {

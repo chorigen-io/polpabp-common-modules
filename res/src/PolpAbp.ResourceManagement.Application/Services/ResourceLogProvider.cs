@@ -12,7 +12,7 @@ namespace PolpAbp.ResourceManagement.Services
     {
         public IAbpLazyServiceProvider LazyServiceProvider { get; set; }
 
-        protected ResourceMgmtOptions Options; 
+        protected ResourceMgmtOptions Options;
 
         public ResourceLogProvider(IOptions<ResourceMgmtOptions> options)
         {
@@ -36,7 +36,7 @@ namespace PolpAbp.ResourceManagement.Services
             var contributor = Options.Contributors.First(a => a.Key == resourceName);
             var instance = LazyServiceProvider.LazyGetRequiredService(contributor.Value) as IResourceLogContributor;
 
-                return await instance.CountCurrentUsageAsync(userId, StartedOn, EndedOn, cancellationToken);
+            return await instance.CountCurrentUsageAsync(userId, StartedOn, EndedOn, cancellationToken);
         }
 
         public virtual async Task<long> GetMonthlyUsageAsync(string resourceName, int year, int month, CancellationToken cancellationToken)

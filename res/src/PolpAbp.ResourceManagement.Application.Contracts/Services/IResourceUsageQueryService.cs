@@ -6,7 +6,7 @@ namespace PolpAbp.ResourceManagement.Services
 {
     public interface IResourceUsageQueryService
     {
-        Task<ResourceUsageCacheItem> GetUsageByResourceNameAsync(string resourceName, string cacheKey, 
+        Task<ResourceUsageCacheItem> GetUsageByResourceNameAsync(string resourceName, string cacheKey,
             int expiredInMins = 10, bool forceReload = false, CancellationToken cancellationToken = default);
 
         Task<ResourceUsageCacheItem> GetUsageByCategoryNameAsync(string categoryName,

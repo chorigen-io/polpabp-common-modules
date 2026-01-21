@@ -29,7 +29,7 @@ namespace PolpAbp.ResourceManagement.Services
             _resourceRepository = resourceRepository;
         }
 
-        public async Task<string> GetCategoryAsync(string resourceName, 
+        public async Task<string> GetCategoryAsync(string resourceName,
             CancellationToken cancellationToken = default)
         {
             var resourceEntry = await _resourceRepository.GetAsync(a => a.Name == resourceName, cancellationToken: cancellationToken);

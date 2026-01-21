@@ -33,7 +33,8 @@ namespace PolpAbp.ResourceManagement.Services.Dtos
         // Category restriction
         public List<PlanCategoryQuotaOutputDto> CategoryQuotas { get; set; }
 
-        public SubscriptionPlanOutputDto() { 
+        public SubscriptionPlanOutputDto()
+        {
             Breakdowns = new List<PlanBreakdownOutputDto>();
             CategoryQuotas = new List<PlanCategoryQuotaOutputDto>();
         }

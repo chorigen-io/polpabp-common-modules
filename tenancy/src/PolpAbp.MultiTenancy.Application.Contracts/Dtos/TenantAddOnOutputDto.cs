@@ -13,6 +13,11 @@ namespace PolpAbp.MultiTenancy.Dtos
 
         public Guid Id { get; set; }
 
+        public virtual string GetObjectKey()
+        {
+            return Id.ToString();
+        }
+
         public List<TenantAddressMapOutputDto> AddresseMaps { get; set; }
 
         public List<TenantContactMapOutputDto> ContactMaps { get; set; }

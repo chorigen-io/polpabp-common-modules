@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PolpAbp.Framework;
 using Volo.Abp.Application;
-using Volo.Abp.AutoMapper;
+using Volo.Abp.Mapperly;
 using Volo.Abp.Caching;
 using Volo.Abp.Modularity;
 
@@ -11,7 +11,7 @@ namespace PolpAbp.ResourceManagement;
     typeof(ResourceManagementDomainModule),
     typeof(ResourceManagementApplicationContractsModule),
     typeof(AbpDddApplicationModule),
-    typeof(AbpAutoMapperModule),
+    typeof(AbpMapperlyModule),
     typeof(AbpCachingModule),
     typeof(PolpAbpFrameworkAbpExtensionsModule)
 
@@ -20,10 +20,6 @@ public class ResourceManagementApplicationModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        context.Services.AddAutoMapperObjectMapper<ResourceManagementApplicationModule>();
-        Configure<AbpAutoMapperOptions>(options =>
-        {
-            options.AddMaps<ResourceManagementApplicationModule>(validate: true);
-        });
+        context.Services.AddMapperlyObjectMapper<ResourceManagementApplicationModule>();
     }
 }

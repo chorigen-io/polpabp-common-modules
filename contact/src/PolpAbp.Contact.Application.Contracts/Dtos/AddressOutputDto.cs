@@ -7,6 +7,11 @@ namespace PolpAbp.Contact.Dtos
     public class AddressOutputDto : AddressInputDto, IHasCreationTime, IEntityDto<Guid>
     {
         public Guid Id { get; set; }
+
+        public virtual string GetObjectKey()
+        {
+            return Id.ToString();
+        }
         public DateTime CreationTime { get; set; }
     }
 }

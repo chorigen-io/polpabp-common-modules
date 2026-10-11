@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="8.0.5" />
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="10.7.0" />
     <ProjectReference Include="..\PolpAbp.ResourceManagement.Domain.Shared\PolpAbp.ResourceManagement.Domain.Shared.csproj" />
   </ItemGroup>
 

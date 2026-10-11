@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.AutoMapper;
+using Volo.Abp.Mapperly;
 using Volo.Abp.Modularity;
 using Volo.Abp.Application;
 using PolpAbp.Framework;
@@ -7,7 +7,7 @@ using PolpAbp.Framework;
 namespace PolpAbp.Directory;
 
 [DependsOn(
-    typeof(AbpAutoMapperModule),
+    typeof(AbpMapperlyModule),
     typeof(AbpDddApplicationModule),
     typeof(DirectoryDomainModule),
     typeof(DirectoryApplicationContractsModule),
@@ -17,10 +17,6 @@ public class DirectoryApplicationModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        context.Services.AddAutoMapperObjectMapper<DirectoryApplicationModule>();
-        Configure<AbpAutoMapperOptions>(options =>
-        {
-            options.AddMaps<DirectoryApplicationModule>(validate: true);
-        });
+        context.Services.AddMapperlyObjectMapper<DirectoryApplicationModule>();
     }
 }

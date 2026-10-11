@@ -3,15 +3,15 @@
   <Import Project="..\..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>PolpAbp.MultiTenancy</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\PolpAbp.MultiTenancy.Application\PolpAbp.MultiTenancy.Application.csproj" />
     <ProjectReference Include="..\PolpAbp.MultiTenancy.Domain.Tests\PolpAbp.MultiTenancy.Domain.Tests.csproj" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-	<PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+	<PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
   </ItemGroup>
 
 </Project>

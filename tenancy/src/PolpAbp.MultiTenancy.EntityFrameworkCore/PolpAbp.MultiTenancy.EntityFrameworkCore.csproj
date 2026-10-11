@@ -3,12 +3,12 @@
   <Import Project="..\..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>PolpAbp.MultiTenancy</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="8.0.5" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="10.7.0" />
     <ProjectReference Include="..\PolpAbp.MultiTenancy.Domain\PolpAbp.MultiTenancy.Domain.csproj" />
     <ProjectReference Include="..\..\..\..\fwt\src\PolpAbp.Extensions.EntityFrameworkCore\PolpAbp.Extensions.EntityFrameworkCore.csproj" />
   </ItemGroup>

@@ -11,6 +11,11 @@ namespace PolpAbp.InlineMedia.Dtos
         public DateTime? LastModificationTime { get; set; }
 
         public Guid Id { get; set; }
+
+        public virtual string GetObjectKey()
+        {
+            return Id.ToString();
+        }
     }
 }
 

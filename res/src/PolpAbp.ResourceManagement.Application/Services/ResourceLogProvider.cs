@@ -33,7 +33,12 @@ namespace PolpAbp.ResourceManagement.Services
 
         public virtual async Task<long> CountCurrentUsageAsync(string resourceName, Guid? userId, DateTime StartedOn, DateTime? EndedOn, CancellationToken cancellationToken)
         {
-            var contributor = Options.Contributors.First(a => a.Key == resourceName);
+            var contributor = Options.Contributors.FirstOrDefault(a => a.Key == resourceName);
+            if (contributor.Key == null)
+            {
+                // No contributor meters this resource: it counts as zero usage.
+                return 0;
+            }
             var instance = LazyServiceProvider.LazyGetRequiredService(contributor.Value) as IResourceLogContributor;
 
             return await instance.CountCurrentUsageAsync(userId, StartedOn, EndedOn, cancellationToken);
@@ -41,7 +46,12 @@ namespace PolpAbp.ResourceManagement.Services
 
         public virtual async Task<long> GetMonthlyUsageAsync(string resourceName, int year, int month, CancellationToken cancellationToken)
         {
-            var contributor = Options.Contributors.First(a => a.Key == resourceName);
+            var contributor = Options.Contributors.FirstOrDefault(a => a.Key == resourceName);
+            if (contributor.Key == null)
+            {
+                // No contributor meters this resource: it counts as zero usage.
+                return 0;
+            }
             var instance = LazyServiceProvider.LazyGetRequiredService(contributor.Value) as IResourceLogContributor;
 
             return await instance.GetMonthlyUsageAsync(year, month, cancellationToken);
@@ -49,7 +59,12 @@ namespace PolpAbp.ResourceManagement.Services
 
         public virtual async Task<long> GetYearlyUsageAsync(string resourceName, int year, CancellationToken cancellationToken)
         {
-            var contributor = Options.Contributors.First(a => a.Key == resourceName);
+            var contributor = Options.Contributors.FirstOrDefault(a => a.Key == resourceName);
+            if (contributor.Key == null)
+            {
+                // No contributor meters this resource: it counts as zero usage.
+                return 0;
+            }
             var instance = LazyServiceProvider.LazyGetRequiredService(contributor.Value) as IResourceLogContributor;
 
             return await instance.GetYearlyUsageAsync(year, cancellationToken);

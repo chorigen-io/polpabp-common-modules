@@ -176,5 +176,80 @@ namespace PolpAbp.ResourceManagement.Services
             }
         }
 
+        // A seeded resource with no registered contributor counts as zero usage (#2).
+        [Fact]
+        public async Task CountCurrentUsageAsync_IsZero_ForUnregisteredResourceAsync()
+        {
+            using (_currentTenant.Change(ResourceManagementTestConsts.TenantId))
+            {
+                await WithUnitOfWorkAsync(async () =>
+                {
+                    var a = await _resourceLogProvider.CountCurrentUsageAsync(
+                        ResourceManagementTestConsts.FormPublication,
+                        null,
+                        DateTime.UtcNow.Subtract(new TimeSpan(48, 0, 0)),
+                        null,
+                        default);
+
+                    Assert.Equal(0, a);
+                });
+            }
+        }
+
+        [Fact]
+        public async Task GetMonthlyUsageAsync_IsZero_ForUnregisteredResourceAsync()
+        {
+            using (_currentTenant.Change(ResourceManagementTestConsts.TenantId))
+            {
+                await WithUnitOfWorkAsync(async () =>
+                {
+                    var b = await _resourceLogProvider
+                    .GetMonthlyUsageAsync(ResourceManagementTestConsts.FormPublication,
+                        2023, 1, default);
+
+                    Assert.Equal(0, b);
+                });
+            }
+        }
+
+        [Fact]
+        public async Task GetYearlyUsageAsync_IsZero_ForUnregisteredResourceAsync()
+        {
+            using (_currentTenant.Change(ResourceManagementTestConsts.TenantId))
+            {
+                await WithUnitOfWorkAsync(async () =>
+                {
+                    var b = await _resourceLogProvider
+                    .GetYearlyUsageAsync(ResourceManagementTestConsts.FormPublication,
+                        2023, default);
+
+                    Assert.Equal(0, b);
+                });
+            }
+        }
+
+        // Storing usage that nobody meters stays a programming error (#2).
+        [Fact]
+        public async Task StoreAsync_Throws_ForUnregisteredResourceAsync()
+        {
+            using (_currentTenant.Change(ResourceManagementTestConsts.TenantId))
+            {
+                await WithUnitOfWorkAsync(async () =>
+                {
+                    var info = new ResourceLogInfo()
+                    {
+                        ResourceName = ResourceManagementTestConsts.FormPublication,
+                        TenantId = ResourceManagementTestConsts.TenantId,
+                        UserId = ResourceManagementTestConsts.AdminId,
+                        HappenedOn = DateTime.UtcNow,
+                        Usage = 1
+                    };
+
+                    await Assert.ThrowsAsync<InvalidOperationException>(
+                        () => _resourceLogProvider.StoreAsync(info, default));
+                });
+            }
+        }
+
     }
 }
